@@ -6,7 +6,40 @@
   - `npm run test-palindrome`
 */
 
-function isPalindrome(str) {
+function isPalindrome (str)
+{
+  str = str.toLowerCase();
+  const n = str.length;
+  
+  let low = 0, high = n - 1;
+  while (low < high)
+  {
+    const isFirstLetter = /^[a-z]$/.test(str[low]);
+    const isSecondLetter = /^[a-z]$/.test(str[high]);
+
+    //console.log (low + ' ' + high + ' : ' + isFirstLetter + ' ' + isSecondLetter);
+
+    if (!isFirstLetter || !isSecondLetter)
+    {
+      if (!isFirstLetter)
+      {
+        ++low;
+      }
+
+      if (!isSecondLetter)
+      {
+        --high;
+      }
+    }
+    else
+    {
+      if (str[low] !== str[high])
+      {
+        return false;
+      }
+      ++low, --high;
+    }
+  }
   return true;
 }
 
